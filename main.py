@@ -1,5 +1,5 @@
 """
-AI Air Pencil — draw in the air, tracked by your webcam.
+HandGesture Air Pencil — draw in the air, tracked by your webcam.
 
 Entry point. Wires together hand tracking, gesture recognition, the
 canvas/painter, and the UI into a single render loop.
@@ -26,15 +26,13 @@ from ui import (
     draw_eraser_cursor,
     draw_help_overlay,
     draw_hud,
-    is_over_clear_button,
-    select_color,
 )
 from utils import CoordinateSmoother, FPSCounter
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-logger = logging.getLogger("air_pencil")
+logger = logging.getLogger("HandGesture_air_pencil")
 
-WINDOW_NAME = "AI Air Pencil"
+WINDOW_NAME = "HandGesture Air Pencil"
 
 
 def parse_args() -> argparse.Namespace:
@@ -73,7 +71,7 @@ def run() -> None:
     current_color = CURRENT_COLOR
     show_help = False
 
-    logger.info("AI Air Pencil started. Press H for controls, Q or Esc to quit.")
+    logger.info("HandGesture Air Pencil started. Press H for controls, Q or Esc to quit.")
 
     try:
         while True:
@@ -109,10 +107,10 @@ def run() -> None:
 
                 elif active_gesture == Gesture.SELECT:
                     painter.reset_previous()
-                    if is_over_clear_button(point):
+                    if toolbar.is_over_clear_button(point):
                         painter.clear()
                     else:
-                        current_color = select_color(point, current_color)
+                        current_color = toolbar.select_color(point, current_color)
 
                 elif active_gesture == Gesture.ERASE:
                     painter.reset_previous()
