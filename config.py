@@ -1,5 +1,5 @@
 """
-Central configuration for the AI Air Pencil application.
+Central configuration for the HandGesture Air Pencil application.
 
 Every tunable constant lives here so behaviour can be adjusted without
 touching application logic.
@@ -72,6 +72,15 @@ BUTTON_GAP: int = 16
 BUTTON_MARGIN: int = 20
 
 
+PALETTE: Tuple[Tuple[str, Color], ...] = (
+    ("Green", GREEN),
+    ("Blue", BLUE),
+    ("Red", RED),
+    ("Yellow", YELLOW),
+    ("Purple", PURPLE),
+)
+
+
 @dataclass(frozen=True)
 class ColorButton:
     name: str
@@ -79,41 +88,13 @@ class ColorButton:
     box: Tuple[int, int, int, int]  # x1, y1, x2, y2
 
 
-def _build_color_buttons() -> Tuple[ColorButton, ...]:
-    palette = [
-        ("Green", GREEN),
-        ("Blue", BLUE),
-        ("Red", RED),
-        ("Yellow", YELLOW),
-        ("Purple", PURPLE),
-    ]
-    buttons = []
-    x = BUTTON_MARGIN
-    y1 = (TOOLBAR_HEIGHT - BUTTON_SIZE) // 2
-    y2 = y1 + BUTTON_SIZE
-    for name, color in palette:
-        buttons.append(ColorButton(name, color, (x, y1, x + BUTTON_SIZE, y2)))
-        x += BUTTON_SIZE + BUTTON_GAP
-    return tuple(buttons)
-
-
-COLOR_BUTTONS: Tuple[ColorButton, ...] = _build_color_buttons()
-
-# Eraser button sits right after the color swatches
-ERASER_BUTTON_BOX: Tuple[int, int, int, int] = (
-    COLOR_BUTTONS[-1].box[2] + BUTTON_GAP * 2,
-    (TOOLBAR_HEIGHT - BUTTON_SIZE) // 2,
-    COLOR_BUTTONS[-1].box[2] + BUTTON_GAP * 2 + BUTTON_SIZE,
-    (TOOLBAR_HEIGHT - BUTTON_SIZE) // 2 + BUTTON_SIZE,
-)
-
-# Clear-canvas button sits after the eraser button
-CLEAR_BUTTON_BOX: Tuple[int, int, int, int] = (
-    ERASER_BUTTON_BOX[2] + BUTTON_GAP * 2,
-    (TOOLBAR_HEIGHT - BUTTON_SIZE) // 2,
-    ERASER_BUTTON_BOX[2] + BUTTON_GAP * 2 + BUTTON_SIZE * 2,
-    (TOOLBAR_HEIGHT - BUTTON_SIZE) // 2 + BUTTON_SIZE,
-)
+# NOTE: Button positions are NOT computed here. Webcams frequently ignore a
+# requested capture resolution and fall back to whatever they actually
+# support (640x480 is common), so any layout baked in at import time using
+# a fixed assumed width can end up partly or fully off-screen. Instead,
+# `ui.ToolbarRenderer` builds the button layout at runtime from the frame's
+# real width, shrinking button size/spacing if needed so every button
+# (including Clear) always stays on screen and reachable.
 
 # --------------------------------------------------------------------------- #
 # Gestures
