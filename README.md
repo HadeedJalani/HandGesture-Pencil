@@ -4,7 +4,7 @@
 
 **Draw in thin air. Your webcam and one finger are the only pen you need.**
 
-A real-time, gesture-controlled drawing application built with **OpenCV** and **MediaPipe Hands** — track a bare hand, recognize drawing gestures, and paint directly onto the camera feed with zero physical hardware.
+A real-time, gesture-controlled drawing application built with **OpenCV** and **MediaPipe Hands** track a bare hand, recognize drawing gestures, and paint directly onto the camera feed with zero physical hardware.
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.10-5C3EE8?logo=opencv&logoColor=white)](https://opencv.org/)
@@ -17,18 +17,18 @@ A real-time, gesture-controlled drawing application built with **OpenCV** and **
 
 ## Overview
 
-HandGestureAir Pencil turns your webcam into a touchless whiteboard. MediaPipe locates 21 landmarks on your hand every frame; a small finger-state engine turns those landmarks into one of four gestures — **draw**, **select**, **erase**, **idle** — which are debounced over several frames to stay stable even when tracking gets noisy. Strokes are rendered onto a persistent canvas and composited live over the camera feed.
+HandGestureAir Pencil turns your webcam into a touchless whiteboard. MediaPipe locates 21 landmarks on your hand every frame; a small finger-state engine turns those landmarks into one of four gestures - **draw**, **select**, **erase**, **idle** - which are debounced over several frames to stay stable even when tracking gets noisy. Strokes are rendered onto a persistent canvas and composited live over the camera feed.
 
 ## Features
 
-- 🎯 **Real-time hand tracking** — single-hand, 21-point landmark detection via MediaPipe
-- ✌️ **Four core gestures** — index finger to draw, index+middle to select, open palm to erase, fist to idle
-- 🪄 **Gesture stabilization** — a frame-count debounce filter eliminates single-frame flicker between gestures
-- 📉 **Jitter-free strokes** — exponential moving-average smoothing on the fingertip cursor, plus jump rejection for tracking glitches
-- 🎨 **In-app toolbar** — 5-color palette, dedicated eraser and clear buttons, all selectable by gesture
-- ⌨️ **Keyboard shortcuts** — resize the brush, clear the canvas, toggle the skeleton overlay or the help panel without leaving draw mode
-- 📊 **Live HUD** — current mode, brush size, and FPS rendered on screen
-- ⚡ **Efficient rendering** — the toolbar's static artwork is pre-rendered once and blitted per frame instead of being redrawn button-by-button, cutting per-frame OpenCV draw calls significantly
+- 🎯 **Real-time hand tracking** - single-hand, 21-point landmark detection via MediaPipe
+- ✌️ **Four core gestures** - index finger to draw, index+middle to select, open palm to erase, fist to idle
+- 🪄 **Gesture stabilization** - a frame-count debounce filter eliminates single-frame flicker between gestures
+- 📉 **Jitter-free strokes** - exponential moving-average smoothing on the fingertip cursor, plus jump rejection for tracking glitches
+- 🎨 **In-app toolbar** - 5-color palette, dedicated eraser and clear buttons, all selectable by gesture
+- ⌨️ **Keyboard shortcuts** - resize the brush, clear the canvas, toggle the skeleton overlay or the help panel without leaving draw mode
+- 📊 **Live HUD** - current mode, brush size, and FPS rendered on screen
+- ⚡ **Efficient rendering** - the toolbar's static artwork is pre-rendered once and blitted per frame instead of being redrawn button-by-button, cutting per-frame OpenCV draw calls significantly
 
 ## Gesture Reference
 
@@ -37,7 +37,7 @@ HandGestureAir Pencil turns your webcam into a touchless whiteboard. MediaPipe l
 | **Draw** | ☝️ Index finger only | Paints a stroke in the current color |
 | **Select** | ✌️ Index + middle finger | Pick a color, or tap **Clear** on the toolbar |
 | **Erase** | 🖐️ Open palm | Erases under the cursor with a soft circular eraser |
-| **Idle** | ✊ Closed fist | No action — lift the pen |
+| **Idle** | ✊ Closed fist | No action lift the pen |
 
 ## Keyboard Shortcuts
 
@@ -136,6 +136,9 @@ ToolbarRenderer + HUD  ──► composited output frame
 ## Contributing
 
 Issues and pull requests are welcome. For larger changes, please open an issue first to discuss what you'd like to change.
+
+# ✍️ Author
+Hadeed Jalani
 
 ## License
 
