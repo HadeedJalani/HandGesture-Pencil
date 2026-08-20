@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✍️ AI Air Pencil
+# ✍️ HandGesture Air Pencil
 
 **Draw in thin air. Your webcam and one finger are the only pen you need.**
 
@@ -17,7 +17,7 @@ A real-time, gesture-controlled drawing application built with **OpenCV** and **
 
 ## Overview
 
-AI Air Pencil turns your webcam into a touchless whiteboard. MediaPipe locates 21 landmarks on your hand every frame; a small finger-state engine turns those landmarks into one of four gestures — **draw**, **select**, **erase**, **idle** — which are debounced over several frames to stay stable even when tracking gets noisy. Strokes are rendered onto a persistent canvas and composited live over the camera feed.
+HandGestureAir Pencil turns your webcam into a touchless whiteboard. MediaPipe locates 21 landmarks on your hand every frame; a small finger-state engine turns those landmarks into one of four gestures — **draw**, **select**, **erase**, **idle** — which are debounced over several frames to stay stable even when tracking gets noisy. Strokes are rendered onto a persistent canvas and composited live over the camera feed.
 
 ## Features
 
